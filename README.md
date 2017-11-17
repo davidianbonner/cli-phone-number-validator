@@ -48,9 +48,39 @@ $ php number-validator validate:uk-mobile ./path/to/file --file
 
 An output directory is required when using the standalone .PHAR:
 
-
 ```bash
 $ php number-validator validate:uk-mobile ./path/to/file --file --output=/path/to/output/directory
+```
+
+### Adding new validators
+
+New validators can be added with minimal effort. First create a new command in `app/Commands` and extends the `BaseValidatorCommand`.
+
+```php
+<?php
+
+namespace App\Commands;
+
+class ValidateESFixedLineCommand extends BaseValidatorCommand
+{
+    protected $signature = 'validate:es-fixedline
+                            {source* : A list of numbers or files to validate against}
+                            {--file : Specifies that the source is a list of files}
+                            {--output= : Specifies that the output path}';
+
+    protected $description = 'Validate Spanish fixed line numbers and ouput to a CSV';
+
+    public function makeValidatorForNumer($number): PhoneNumberValidator
+    {
+        // The country code is only required when no dialing code is present in the number.
+        return app(PhoneNumberValidator::class)->make($number, 'ES');
+    }
+
+    public function isNumberValid(PhoneNumberValidator $validator): bool
+    {
+        return ($validator->isValidFixedLine() && $validator->isValidForCountry('ES'));
+    }
+}
 ```
 
 ## License

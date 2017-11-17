@@ -3,13 +3,11 @@
 namespace App\Commands;
 
 use App\PhoneNumberValidator;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 
-class ValidateUKMobileCommand extends Command
+class ValidateUKMobileCommand extends BaseValidatorCommand
 {
     /**
      * The name and signature of the console command.
@@ -29,11 +27,6 @@ class ValidateUKMobileCommand extends Command
     protected $description = 'Validate UK mobile numbers and ouput to a CSV';
 
     /**
-     * @var mixed
-     */
-    protected $source;
-
-    /**
      * @var array
      */
     protected $validCountryCodes = [
@@ -41,132 +34,24 @@ class ValidateUKMobileCommand extends Command
     ];
 
     /**
-     * Create a new command instance.
+     * Make a validator for a given number.
      *
-     * @return void
+     * @param  mixed $number
+     * @return App\PhoneNumberValidator
      */
-    public function __construct()
+    public function makeValidatorForNumer($number): PhoneNumberValidator
     {
-        parent::__construct();
-
-        $date = Carbon::now()->format('Ymd_his');
-        $rand = mb_strtolower(str_random(6));
-
-        $this->fileName = $date.'-'.$rand.'.csv';
-        $this->outputPath = base_path('output');
+        return app(PhoneNumberValidator::class)->make($number, 'GB');
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle(): void
-    {
-        $this->setSource();
-        $this->validateOutputPath();
-
-        $this->buildCsvFromRows(
-            $this->compileRowsFromSource($this->source)
-        );
-
-        $this->info('Total: '.count($this->source));
-        $this->info('Filename: '.$this->fileName);
-    }
-
-    /**
-     * Build a CSV from the rows.
-     *
-     * @param  Collection $rows
-     * @return void
-     */
-    protected function buildCsvFromRows(Collection $rows)
-    {
-        $path = $this->outputPath.'/'.$this->fileName;
-        File::put($path, implode("\n", $rows->toArray()));
-    }
-
-    /**
-     * Process a list of numbers.
-     *
-     * @param array $source
-     * @return Illuminate\Support\Collection
-     */
-    protected function compileRowsFromSource(array $source): Collection
-    {
-        return collect($source)
-            ->map(function ($number) {
-                return app(PhoneNumberValidator::class)->make($number, 'GB');
-            })->map(function ($number) {
-                return $this->buildRowFromValidator($number);
-            })
-            ->prepend(['phone number', 'carrier', 'status'])
-            ->map(function ($row) {
-                return implode(',', $row);
-            });
-    }
-
-    /**
-     * Build a row.
+     * Is the number valid?
      *
      * @param  App\PhoneNumberValidator $validator
-     * @return array
+     * @return bool
      */
-    protected function buildRowFromValidator(PhoneNumberValidator $validator): array
+    public function isNumberValid(PhoneNumberValidator $validator): bool
     {
-        $row = [$validator->getNumber(), '', 'not valid'];
-
-        if ($validator->isValidMobile() && $validator->isValidForCountry($this->validCountryCodes)) {
-            $row[1] = $validator->getCarrierName();
-            $row[2] = 'valid';
-        }
-
-        return $row;
-    }
-
-    /**
-     * Set the source.
-     */
-    protected function setSource(): void
-    {
-        $this->source = $this->option('file')
-            ? $this->getSourceFromFile($this->argument('source'))
-            : array_wrap($this->argument('source'));
-
-        $this->info('Source valid: '.($this->option('file') ? 'File' : 'List'));
-    }
-
-    /**
-     * Return the contents of the source file.
-     *
-     * @return array
-     */
-    protected function getSourceFromFile($file): array
-    {
-        $file = head(array_wrap($file));
-
-        throw_unless(
-            File::exists($file),
-            RuntimeException::class,
-            "Source does not exist [{$file}]"
-        );
-
-        return array_wrap(explode("\n", File::get($file)));
-    }
-
-    /**
-     * Set the output path.
-     */
-    protected function validateOutputPath(): void
-    {
-        if ($this->option('output')) {
-            $this->outputPath = $this->option('output');
-        }
-
-        throw_unless(
-            is_dir($this->outputPath),
-            RuntimeException::class,
-            "The output path does not exist [{$this->outputPath}]"
-        );
+        return ($validator->isValidMobile() && $validator->isValidForCountry($this->validCountryCodes));
     }
 }
