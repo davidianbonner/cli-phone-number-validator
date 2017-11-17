@@ -13,7 +13,7 @@
 Install the application with composer:
 
 ```bash
-$ composer create-project davidianbonner/cli-phone-validator
+$ composer create-project davidianbonner/cli-phone-number-validator
 ```
 
 To create a standalone PHAR of the application for deployment, run:

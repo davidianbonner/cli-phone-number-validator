@@ -38,7 +38,7 @@
     },
     "scripts": {
         "post-create-project-cmd": [
-            "php application app:rename"
+            "php number-validator app:rename"
         ]
     },
     "bin": ["number-validator"]
