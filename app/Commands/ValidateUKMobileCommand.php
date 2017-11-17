@@ -133,7 +133,7 @@ class ValidateUKMobileCommand extends Command
     protected function setSource(): void
     {
         $this->source = $this->option('file')
-            ? $this->getSourceFromFile(head($this->argument('source')))
+            ? $this->getSourceFromFile($this->argument('source'))
             : array_wrap($this->argument('source'));
 
         $this->info('Source valid: '.($this->option('file') ? 'File' : 'List'));
@@ -146,6 +146,8 @@ class ValidateUKMobileCommand extends Command
      */
     protected function getSourceFromFile($file): array
     {
+        $file = head(array_wrap($file));
+
         throw_unless(
             File::exists($file),
             RuntimeException::class,

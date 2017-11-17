@@ -16,8 +16,9 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Laravel Zero Test Suite">
+        <testsuite name="Number Validator Test Suite">
             <directory suffix="Test.php">./tests/Integration</directory>
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
     <listeners>
