@@ -3,9 +3,7 @@
 namespace App\Commands;
 
 use App\PhoneNumberValidator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Console\Exception\RuntimeException;
 
 class ValidateUKMobileCommand extends BaseValidatorCommand
 {
@@ -52,6 +50,6 @@ class ValidateUKMobileCommand extends BaseValidatorCommand
      */
     public function isNumberValid(PhoneNumberValidator $validator): bool
     {
-        return ($validator->isValidMobile() && $validator->isValidForCountry($this->validCountryCodes));
+        return $validator->isValidMobile() && $validator->isValidForCountry($this->validCountryCodes);
     }
 }
