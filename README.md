@@ -26,7 +26,7 @@ This will output a .PHAR to the `build` directory.
 
 ### Usage
 
-There are two ways to process and validate numbers:
+The validator comes with a pre-built GB & Channel Islands mobile command: `validate:uk-mobile`. There are two ways to process and validate numbers:
 
 ##### List source
 
