@@ -41,4 +41,11 @@ interface PhoneNumberValidator
      * @return array
      */
     public function getCarrierName(): string;
+
+    /**
+     * Return the phone number.
+     *
+     * @return string
+     */
+    public function getNumber(): string;
 }
