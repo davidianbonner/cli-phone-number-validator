@@ -1,4 +1,4 @@
-<p align="center">
+<p>
     <a href="https://styleci.io/repos/111046923">
         <img src="https://styleci.io/repos/111046923/shield" alt="StyleCI Status" />
     </a>

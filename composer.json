@@ -1,16 +1,12 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "Laravel Zero provides the perfect starting point for your next Laravel Console Application.",
+    "name": "davidianbonner/cli-phone-validator",
+    "description": "CLI Phone Number Validator using Google's libphonenumber.",
     "keywords": ["framework", "laravel", "console", "zero"],
     "license": "MIT",
-    "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
-    },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "David Bonner",
+            "email": "davidianbonner@gmail.com"
         }
     ],
     "require": {
