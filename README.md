@@ -3,7 +3,7 @@
 [![Author](http://img.shields.io/badge/author-@dbonner1987-blue.svg?style=flat-square)](https://twitter.com/dbonner1987)
 [![Build Status](https://img.shields.io/travis/davidianbonner/cli-phone-number-validator/master.svg?style=flat-square)](https://travis-ci.org/davidianbonner/cli-phone-number-validator)
 [![Quality Score](https://img.shields.io/scrutinizer/g/davidianbonner/cli-phone-number-validator.svg?style=flat-square)](https://scrutinizer-ci.com/g/davidianbonner/cli-phone-number-validator)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/davidianbonner/cli-phone-number-validator/blob/master/LICENSE.md)
 [![Packagist Version](https://img.shields.io/packagist/v/davidianbonner/cli-phone-number-validator.svg?style=flat-square)](https://packagist.org/packages/davidianbonner/cli-phone-number-validator)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/davidianbonner/cli-phone-number-validator.svg?style=flat-square)](https://scrutinizer-ci.com/g/davidianbonner/cli-phone-number-validator/code-structure)
 

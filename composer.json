@@ -1,5 +1,5 @@
 {
-    "name": "davidianbonner/cli-phone-validator",
+    "name": "davidianbonner/cli-phone-number-validator",
     "description": "CLI Phone Number Validator using Google's libphonenumber.",
     "keywords": ["framework", "laravel", "console", "zero"],
     "license": "MIT",
