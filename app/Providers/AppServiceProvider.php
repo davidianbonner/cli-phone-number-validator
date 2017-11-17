@@ -4,9 +4,7 @@ namespace App\Providers;
 
 use App\PhoneNumberValidator;
 use App\LibPhoneNumberValidator;
-use libphonenumber\PhoneNumberUtil;
 use Illuminate\Support\ServiceProvider;
-use libphonenumber\PhoneNumberToCarrierMapper;
 
 class AppServiceProvider extends ServiceProvider
 {
