@@ -22,13 +22,13 @@ class LibPhoneNumberValidator implements PhoneNumberValidator
     protected $carrierMapper;
 
     /**
-     * Number to validate
+     * Number to validate.
      * @var libphonenumber\PhoneNumber
      */
     protected $number;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $isValid = false;
 
@@ -68,7 +68,7 @@ class LibPhoneNumberValidator implements PhoneNumberValidator
      * Is the number valid for the given country code.
      *
      * @param  mixed  $countryCode
-     * @return boolean
+     * @return bool
      */
     public function isValidForCountry($countryCode): bool
     {
@@ -84,7 +84,7 @@ class LibPhoneNumberValidator implements PhoneNumberValidator
     /**
      * Is the number a valid mobile.
      *
-     * @return boolean
+     * @return bool
      */
     public function isValidMobile(): bool
     {
@@ -94,7 +94,7 @@ class LibPhoneNumberValidator implements PhoneNumberValidator
     /**
      * Is the number a valid landline/fixed-line.
      *
-     * @return boolean
+     * @return bool
      */
     public function isValidFixedLine(): bool
     {
@@ -118,11 +118,11 @@ class LibPhoneNumberValidator implements PhoneNumberValidator
      */
     public function getNumber(): string
     {
-        return $this->util->format($this->number,  PhoneNumberFormat::INTERNATIONAL);
+        return $this->util->format($this->number, PhoneNumberFormat::INTERNATIONAL);
     }
 
     /**
-     * Get a new instance of the validator
+     * Get a new instance of the validator.
      *
      * @param libphonenumber\PhoneNumberToCarrierMapper $mapper
      */

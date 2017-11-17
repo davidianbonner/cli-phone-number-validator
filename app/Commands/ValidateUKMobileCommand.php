@@ -2,13 +2,10 @@
 
 namespace App\Commands;
 
-use Closure;
-use Exception;
 use App\PhoneNumberValidator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 
@@ -40,7 +37,7 @@ class ValidateUKMobileCommand extends Command
      * @var array
      */
     protected $validCountryCodes = [
-        'GB', 'GG', 'JE'
+        'GB', 'GG', 'JE',
     ];
 
     /**
@@ -103,7 +100,7 @@ class ValidateUKMobileCommand extends Command
             })->map(function ($number) {
                 return $this->buildRowFromValidator($number);
             })
-            ->prepend(['phone number','carrier','status'])
+            ->prepend(['phone number', 'carrier', 'status'])
             ->map(function ($row) {
                 return implode(',', $row);
             });

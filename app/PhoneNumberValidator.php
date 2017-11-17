@@ -11,19 +11,19 @@ interface PhoneNumberValidator
      * @param  null|string  $countryCode
      * @return self
      */
-    public function make($number, string $countryCode = null): PhoneNumberValidator;
+    public function make($number, string $countryCode = null): self;
 
     /**
      * Is the number a valid mobile.
      *
-     * @return boolean
+     * @return bool
      */
     public function isValidMobile(): bool;
 
     /**
      * Is the number a valid landline/fixed-line.
      *
-     * @return boolean
+     * @return bool
      */
     public function isValidFixedLine(): bool;
 
@@ -31,7 +31,7 @@ interface PhoneNumberValidator
      * Is the number valid for the given country code.
      *
      * @param  mixed  $countryCode
-     * @return boolean
+     * @return bool
      */
     public function isValidForCountry($countryCode): bool;
 
